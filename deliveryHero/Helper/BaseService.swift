@@ -103,12 +103,12 @@ class BaseService: BaseServiceProtocol {
                   let data = data, error == nil,
                   let image = UIImage(data: data) else {
 
-                let emptyImage = Icons.questionmark.iconImage ?? UIImage()
                 DispatchQueue.main.async {
-                    completion(emptyImage)
+                    completion(nil)
                 }
                 return
             }
+            
             DispatchQueue.main.async {
                 completion(image)
             }
