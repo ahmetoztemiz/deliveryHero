@@ -33,16 +33,20 @@ extension BaseServiceProtocol {
 }
 
 enum urlParameters: String {
-    case region = "region/%@"
-    case alpha
-    case codes
-    case name = "name/%@"
+    case imageBase = "https://image.tmdb.org/t/p/w500"
+    case popularMovie = "movie/popular"
+    case multiSearch = "search/multi"
+    case apiKey = "api_key"
+    case key = "00ffab1ba4de79a8d1cfec5af4bb1534"
+    case page
+    case query
+    case language
 }
 
 class BaseService: BaseServiceProtocol {
     private func getURLComponents(params: [(type: urlParameters, value: String)]?,
                                   additionalURL: String?) -> URL? {
-        var baseURL = "https://restcountries.com/v3.1/"
+        var baseURL = "https://api.themoviedb.org/3/"
         if let additionalURL = additionalURL {
             baseURL += additionalURL
         }
