@@ -6,3 +6,51 @@
 //
 
 import Foundation
+
+// MARK: - Interactor
+protocol MovieListInteractorProtocol: AnyObject {
+    var delegate: MovieListInteractorDelegate? { get set }
+    func getMovieList(key text: String?)
+    func getSelectedData(at index: Int)
+}
+
+enum MovieListInteractorOutput: Equatable {
+    case setLoading(Bool)
+    case showData([MediaModel])
+    case showAlert(title: String, message: String)
+    case showDetail(MediaModel)
+}
+
+protocol MovieListNavigationDelegate: AnyObject {
+    func routeToMovieDetail(to route: MovieListRoute, movieDetail data: MediaModel)
+}
+
+protocol MovieListInteractorDelegate: AnyObject {
+    func handleOutput(_ output: MovieListInteractorOutput)
+}
+
+// MARK: - Presenter
+protocol MovieListPresenterProtocol: AnyObject {
+    func loadData(key text: String?)
+    func select(at index: Int)
+}
+
+enum MovieListPresenterOutput: Equatable {
+    case setLoading(Bool)
+    case showData([[MediaPresentationModel]])
+    case showAlert(title: String, message: String)
+}
+
+// MARK: - View
+protocol MovieListViewProtocol: AnyObject {
+    func handleOutput(_ output: MovieListPresenterOutput)
+}
+
+// MARK: - Router
+protocol MovieListRouterProtocol: AnyObject {
+    func navigate(to route: MovieListRoute)
+}
+
+enum MovieListRoute: Equatable {
+    case detail
+}

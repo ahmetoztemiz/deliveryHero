@@ -17,8 +17,9 @@ final class AppRouter {
     }
     
     func start() {
-        let viewController = UIViewController()
-        window.rootViewController = viewController
+        let mainVC = MovieListBuilder.make()
+        let mainNVC = UINavigationController(rootViewController: mainVC)
+        window.rootViewController = mainNVC
         window.makeKeyAndVisible()
     }
 }

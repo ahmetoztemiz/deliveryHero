@@ -62,6 +62,19 @@ struct MediaModel: Codable, Equatable {
         case originCountry = "origin_country"
         case originalName = "original_name"
     }
+    
+    func getMediaPresentationModel() -> MediaPresentationModel {
+        let modelId = String(describing: id)
+        let personName = self.name ?? ""
+        let title = self.originalTitle ?? personName
+        let personImage = self.profilePath ?? ""
+        let imageURL = self.posterPath ?? personImage
+        let mediaType = self.mediaType ?? .movie
+        
+        let presentationModel = MediaPresentationModel(id: modelId, title: title, imagePath: imageURL, type: mediaType)
+        
+        return presentationModel
+    }
 }
 
 enum MediaType: String, Codable {
@@ -71,6 +84,6 @@ enum MediaType: String, Codable {
 }
 
 struct MediaPresentationModel: Codable, Equatable {
-    let title, imagePath: String
+    let id, title, imagePath: String
     let type: MediaType
 }

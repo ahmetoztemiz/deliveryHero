@@ -10,15 +10,14 @@ import UIKit
 
 struct Constants {
     struct Text {
-        static let search = "Search"
-        static let regions = "Regions"
-        static let countries = "Countries"
-        static let neighbors = "Neighbors"
-        static let languages = "Languages: %@"
-        static let currencies = "Currencies: %@"
+        static let movieList = "Movie List"
+        static let movies = "Movies"
+        static let actors = "Actors"
+        static let tv = "TV Shows"
+        static let others = "Others"
         static let noResultError = "We couldn't find any result for searched keyword."
         static let searchError = "Search text must be more than 1 digit."
-        static let searchPlaceholder = "Search Country"
+        static let searchPlaceholder = "Search movies, actors or TV series..."
         static let cancel = "Cancel"
         static let ok = "Ok"
         static let confirm = "Confirm"
