@@ -11,7 +11,7 @@ import Foundation
 protocol MovieListInteractorProtocol: AnyObject {
     var delegate: MovieListInteractorDelegate? { get set }
     func getMovieList(key text: String?)
-    func getSelectedData(at index: Int)
+    func getSelectedData(id: Int)
 }
 
 enum MovieListInteractorOutput: Equatable {
@@ -28,7 +28,7 @@ protocol MovieListInteractorDelegate: AnyObject {
 // MARK: - Presenter
 protocol MovieListPresenterProtocol: AnyObject {
     func loadData(key text: String?)
-    func select(at index: Int)
+    func select(id: Int)
 }
 
 enum MovieListPresenterOutput: Equatable {
@@ -44,7 +44,7 @@ protocol MovieListViewProtocol: AnyObject {
 
 // MARK: - Router
 protocol MovieListRouterProtocol: AnyObject {
-    func navigate(to route: MovieListRoute, mediaData: MediaModel?, actorData: PersonModel?)
+    func navigate(to route: MovieListRoute, mediaData: MediaModel?, actorData: MovieCastModel?)
 }
 
 enum MovieListRoute: Equatable {

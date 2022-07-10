@@ -7,14 +7,14 @@
 
 import Foundation
 
-// MARK: - Welcome
-struct CreditModel: Codable {
+// MARK: - CreditModel
+struct MovieCreditModel: Codable {
     let id: Int?
-    let cast, crew: [PersonModel]?
+    let cast, crew: [MovieCastModel]?
 }
 
-// MARK: - Cast
-struct PersonModel: Codable, Equatable {
+// MARK: - PersonModel
+struct MovieCastModel: Codable, Equatable {
     let adult: Bool?
     let gender, id: Int?
     let knownForDepartment: String?
@@ -41,15 +41,18 @@ struct PersonModel: Codable, Equatable {
         case order, department, job
     }
     
-    func getCastPresentationModel() -> CastPresentationModel {
-        let presentationModel = CastPresentationModel(id: id ?? 0, name: name ?? "-")
+    func getCastPresentationModel() -> MovieCastPresentationModel {
+        let presentationModel = MovieCastPresentationModel(id: id ?? 0, name: name ?? "-", department: knownForDepartment ?? "-", character: character, profileImage: profilePath ?? "")
         
         return presentationModel
     }
 }
 
-struct CastPresentationModel: Codable, Equatable {
+struct MovieCastPresentationModel: Codable, Equatable {
     let id: Int
     let name: String
+    let department: String
+    let character: String?
+    let profileImage: String
 }
 

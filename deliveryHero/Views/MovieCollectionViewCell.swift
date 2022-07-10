@@ -54,6 +54,7 @@ final class MovieCollectionViewCell: UICollectionViewCell {
     }
     
     func setImageView(url: String) {
+        movieImageView.image = .waitIcon
         let imageURL = urlParameters.imageBase.rawValue + url
         movieImageView.downloaded(from: imageURL, cacheId: cellId) { [weak self] image, cacheId in
             if let cellId = self?.cellId, cacheId == cellId {

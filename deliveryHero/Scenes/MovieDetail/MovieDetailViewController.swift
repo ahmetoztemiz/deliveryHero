@@ -105,7 +105,7 @@ final class MovieDetailViewController: BaseViewController {
     //MARK: - PROPERTIES
     var presenter: MovieDetailPresenterProtocol!
     private var movieData: MediaDetailPresentationModel?
-    private var castList: [CastPresentationModel]?
+    private var castList: [MovieCastPresentationModel]?
     
     //MARK: - FUNCTIONS
     override func viewDidLoad() {
@@ -156,7 +156,7 @@ final class MovieDetailViewController: BaseViewController {
     private func setImageView() {
         guard let data = movieData else { return }
         let url = urlParameters.imageBase.rawValue + data.imagePath
-        let id = NSString(string: data.id)
+        let id = NSString(string: String(data.id))
         
         posterImageView.downloaded(from: url, cacheId: id) { [weak self] image, cacheId in
             if cacheId == id {

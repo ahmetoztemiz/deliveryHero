@@ -12,7 +12,7 @@ final class MovieDetailInteractor: MovieDetailInteractorProtocol {
     //MARK: - PROPERTIES
     weak var delegate: MovieDetailInteractorDelegate?
     private var movieDetail: MediaModel
-    private var creditModel: CreditModel?
+    private var creditModel: MovieCreditModel?
     private var service: BaseServiceProtocol
     
     init(service: BaseServiceProtocol, data movieDetail: MediaModel) {
@@ -32,7 +32,7 @@ final class MovieDetailInteractor: MovieDetailInteractorProtocol {
         let creditAdditionalParam = String(format: urlParameters.movieCredits.rawValue, movieDetail.id ?? 0)
         let creditQueryParams: [(urlParameters, String)] = [(.apiKey, urlParameters.key.rawValue), (.language, "en-US")]
         
-        service.responseService(params: creditQueryParams, additionalURL: creditAdditionalParam) { [weak self] (result: CreditModel?) in
+        service.responseService(params: creditQueryParams, additionalURL: creditAdditionalParam) { [weak self] (result: MovieCreditModel?) in
             self?.creditModel = result
             if let castModel = result?.cast {
                 self?.delegate?.handleOutput(.showCastData(castModel))

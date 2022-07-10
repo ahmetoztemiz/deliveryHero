@@ -17,12 +17,8 @@ protocol MovieDetailInteractorProtocol: AnyObject {
 enum MovieDetailInteractorOutput: Equatable {
     case setLoading(Bool)
     case showData(MediaModel)
-    case showCastData([PersonModel])
-    case showDetail(PersonModel)
-}
-
-protocol MovieDetailNavigationDelegate: AnyObject {
-    func routeToMovieDetail(to route: MovieDetailRoute, movieDetail data: MediaModel)
+    case showCastData([MovieCastModel])
+    case showDetail(MovieCastModel)
 }
 
 protocol MovieDetailInteractorDelegate: AnyObject {
@@ -38,7 +34,7 @@ protocol MovieDetailPresenterProtocol: AnyObject {
 enum MovieDetailPresenterOutput: Equatable {
     case setLoading(Bool)
     case showData(MediaDetailPresentationModel)
-    case showCastData([CastPresentationModel])
+    case showCastData([MovieCastPresentationModel])
 }
 
 // MARK: - View
@@ -48,7 +44,7 @@ protocol MovieDetailViewProtocol: AnyObject {
 
 // MARK: - Router
 protocol MovieDetailRouterProtocol: AnyObject {
-    func navigate(to route: MovieDetailRoute, data personData: PersonModel)
+    func navigate(to route: MovieDetailRoute, data personData: MovieCastModel)
 }
 
 enum MovieDetailRoute: Equatable {

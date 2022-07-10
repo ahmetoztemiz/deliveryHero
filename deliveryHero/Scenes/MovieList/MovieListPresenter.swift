@@ -29,8 +29,8 @@ final class MovieListPresenter: MovieListPresenterProtocol {
         interactor.getMovieList(key: text)
     }
     
-    func select(at index: Int) {
-        interactor.getSelectedData(at: index)
+    func select(id: Int) {
+        interactor.getSelectedData(id: id)
     }
 }
 
@@ -56,7 +56,6 @@ extension MovieListPresenter: MovieListInteractorDelegate {
             } else {
                 router.navigate(to: .movieDetail, mediaData: data, actorData: nil)
             }
-            
         }
     }
 }

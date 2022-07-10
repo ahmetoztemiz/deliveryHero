@@ -17,10 +17,11 @@ final class MovieDetailRouter: MovieDetailRouterProtocol {
     }
     
     //MARK: - FUNCTIONS
-    func navigate(to route: MovieDetailRoute, data personData: PersonModel) {
+    func navigate(to route: MovieDetailRoute, data personData: MovieCastModel) {
         switch route {
         case .actorDetail:
-            break
+            let detailVC = PersonDetailBuilder.make(data: personData)
+            view.show(detailVC, sender: nil)
         }
     }
 }

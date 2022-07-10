@@ -18,6 +18,8 @@ struct Constants {
         static let others = "Others"
         static let vote = "Vote: %.2f"
         static let releaseYear = "Release Year: %@"
+        static let department = "Department: %@"
+        static let character = "Character: %@"
         static let noResultError = "We couldn't find any result for searched keyword."
         static let searchError = "Search text must be more than 1 digit."
         static let searchPlaceholder = "Search movies, actors or TV series..."

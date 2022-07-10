@@ -27,3 +27,9 @@ extension UIImageView {
         }
     }
 }
+
+extension UIImage {
+    static var waitIcon: UIImage {
+        return UIImage(named: "waitIcon") ?? UIImage()
+    }
+}

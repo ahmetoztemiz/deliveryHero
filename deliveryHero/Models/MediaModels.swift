@@ -63,28 +63,26 @@ struct MediaModel: Codable, Equatable {
         case originalName = "original_name"
     }
     
-    func decodeByModel() -> PersonModel? {
+    func decodeByModel() -> MovieCastModel? {
         guard let data = try? JSONEncoder().encode(self) else { return nil }
-        let presentationModel = try? JSONDecoder().decode(PersonModel.self, from: data)
+        let presentationModel = try? JSONDecoder().decode(MovieCastModel.self, from: data)
         
         return presentationModel
     }
     
     func getMediaPresentationModel() -> MediaPresentationModel {
-        let modelId = String(describing: id)
         let personName = self.name ?? ""
         let title = self.originalTitle ?? personName
         let personImage = self.profilePath ?? ""
         let imageURL = self.posterPath ?? personImage
         let mediaType = self.mediaType ?? .movie
         
-        let presentationModel = MediaPresentationModel(id: modelId, title: title, imagePath: imageURL, type: mediaType)
+        let presentationModel = MediaPresentationModel(id: id ?? 0, title: title, imagePath: imageURL, type: mediaType)
         
         return presentationModel
     }
     
     func getMediaDetailPresentationModel() -> MediaDetailPresentationModel {
-        let modelId = String(describing: id)
         let personName = self.name ?? ""
         let title = self.originalTitle ?? personName
         let personImage = self.profilePath ?? ""
@@ -92,7 +90,7 @@ struct MediaModel: Codable, Equatable {
         let mediaType = self.mediaType ?? .movie
         let date = self.releaseDate?.components(separatedBy: "-").first ?? "-"
         
-        let presentationModel = MediaDetailPresentationModel(id: modelId,
+        let presentationModel = MediaDetailPresentationModel(id: id ?? 0,
                                                              title: title,
                                                              imagePath: imageURL,
                                                              defination: self.overview ?? "",
@@ -111,12 +109,14 @@ enum MediaType: String, Codable {
 }
 
 struct MediaPresentationModel: Codable, Equatable {
-    let id, title, imagePath: String
+    let id: Int
+    let title, imagePath: String
     let type: MediaType
 }
 
 struct MediaDetailPresentationModel: Codable, Equatable {
-    let id, title, imagePath, defination, releaseYear: String
+    let id: Int
+    let title, imagePath, defination, releaseYear: String
     let vote: Double
     let type: MediaType
 }

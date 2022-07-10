@@ -17,7 +17,7 @@ final class MovieListRouter: MovieListRouterProtocol {
     }
     
     //MARK: - FUNCTIONS
-    func navigate(to route: MovieListRoute, mediaData: MediaModel?, actorData: PersonModel?) {
+    func navigate(to route: MovieListRoute, mediaData: MediaModel?, actorData: MovieCastModel?) {
         switch route {
         case .movieDetail:
             guard let detailData = mediaData else { return }
@@ -25,8 +25,8 @@ final class MovieListRouter: MovieListRouterProtocol {
             view.show(detailVC, sender: nil)
         case .personDetail:
             guard let detailData = actorData else { return }
-            //let detailVC = MovieDetailBuilder.make(data: detailData)
-            //view.show(detailVC, sender: nil)
+            let detailVC = PersonDetailBuilder.make(data: detailData)
+            view.show(detailVC, sender: nil)
         }
     }
 }

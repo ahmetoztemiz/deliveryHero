@@ -106,7 +106,7 @@ extension MovieListViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? MovieCollectionViewCell
         let media = mediaList[indexPath.section][indexPath.row]
         
-        cell?.cellId = NSString(string: media.id)
+        cell?.cellId = NSString(string: String(media.id))
         cell?.setImageView(url: media.imagePath)
         cell?.titleLabel.text = media.title
         
@@ -140,7 +140,7 @@ extension MovieListViewController: UICollectionViewDataSource {
 
 extension MovieListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter.select(at: indexPath.row)
+        presenter.select(id: mediaList[indexPath.section][indexPath.row].id)
     }
 }
 

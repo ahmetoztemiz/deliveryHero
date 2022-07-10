@@ -38,8 +38,10 @@ final class MovieListInteractor: MovieListInteractorProtocol {
         }
     }
     
-    func getSelectedData(at index: Int) {
-        delegate?.handleOutput(.showDetail(mediaList[index]))
+    func getSelectedData(id: Int) {
+        let filteredData = mediaList.filter{ $0.id == id }
+        guard let data = filteredData.first else { return }
+        delegate?.handleOutput(.showDetail(data))
     }
     
 }
