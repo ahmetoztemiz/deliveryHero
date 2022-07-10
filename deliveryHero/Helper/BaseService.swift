@@ -35,6 +35,7 @@ extension BaseServiceProtocol {
 enum urlParameters: String {
     case imageBase = "https://image.tmdb.org/t/p/w500"
     case popularMovie = "movie/popular"
+    case movieCredits = "movie/%d/credits"
     case multiSearch = "search/multi"
     case apiKey = "api_key"
     case key = "00ffab1ba4de79a8d1cfec5af4bb1534"

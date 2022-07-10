@@ -22,7 +22,6 @@ final class MovieListInteractor: MovieListInteractorProtocol {
     func getMovieList(key text: String?) {
         delegate?.handleOutput(.setLoading(true))
         
-        
         var mediaAdditionalParam = urlParameters.popularMovie.rawValue
         var mediaQueryParams: [(urlParameters, String)] = [(.apiKey, urlParameters.key.rawValue), (.language, "en-US"), (.page, "1")]
         if let queryText = text, queryText != "" {
@@ -37,7 +36,6 @@ final class MovieListInteractor: MovieListInteractorProtocol {
             self?.delegate?.handleOutput(.showData(mediaResult))
             self?.delegate?.handleOutput(.setLoading(false))
         }
-        
     }
     
     func getSelectedData(at index: Int) {

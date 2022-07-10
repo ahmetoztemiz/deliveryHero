@@ -21,10 +21,6 @@ enum MovieListInteractorOutput: Equatable {
     case showDetail(MediaModel)
 }
 
-protocol MovieListNavigationDelegate: AnyObject {
-    func routeToMovieDetail(to route: MovieListRoute, movieDetail data: MediaModel)
-}
-
 protocol MovieListInteractorDelegate: AnyObject {
     func handleOutput(_ output: MovieListInteractorOutput)
 }
@@ -48,9 +44,10 @@ protocol MovieListViewProtocol: AnyObject {
 
 // MARK: - Router
 protocol MovieListRouterProtocol: AnyObject {
-    func navigate(to route: MovieListRoute)
+    func navigate(to route: MovieListRoute, mediaData: MediaModel?, actorData: PersonModel?)
 }
 
 enum MovieListRoute: Equatable {
-    case detail
+    case movieDetail
+    case personDetail
 }

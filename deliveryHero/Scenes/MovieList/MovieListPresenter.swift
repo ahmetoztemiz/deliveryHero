@@ -50,18 +50,13 @@ extension MovieListPresenter: MovieListInteractorDelegate {
         case .showAlert(let title, let message):
             view.handleOutput(.showAlert(title: title, message: message))
         case .showDetail(let data):
-            break
-//            router.navigate(to: .detail, selectedMovie: data, delegate: self)
+            if data.mediaType == .person {
+                let actorData = data.decodeByModel()
+                router.navigate(to: .personDetail, mediaData: nil, actorData: actorData)
+            } else {
+                router.navigate(to: .movieDetail, mediaData: data, actorData: nil)
+            }
+            
         }
     }
 }
-
-extension MovieListPresenter: MovieListNavigationDelegate {
-    func routeToMovieDetail(to route: MovieListRoute, movieDetail data: MediaModel) {
-        switch route {
-        case .detail:
-            handleOutput(.showDetail(data))
-        }
-    }
-}
-    

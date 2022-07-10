@@ -37,9 +37,10 @@ class BaseViewController: UIViewController {
     
     func configureNavigationBar(title: String) {
         self.title = title
-        self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.textColor
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.textColor]
+        self.view.backgroundColor = UIColor.backgroundColor
+        self.view.tintColor = UIColor.iconColor
     }
 
     func showIndicator(_ isLoading: Bool) {

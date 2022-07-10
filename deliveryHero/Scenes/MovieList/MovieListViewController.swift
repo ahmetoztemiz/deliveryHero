@@ -118,7 +118,7 @@ extension MovieListViewController: UICollectionViewDataSource {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                            withReuseIdentifier: String(describing: TitleCollectionReusableView.self),
                                                                            for: indexPath) as? TitleCollectionReusableView else { return UICollectionReusableView() }
-        let media = mediaList[indexPath.section][indexPath.row]
+        guard let media = mediaList[indexPath.section].first else { return header }
         var headerTitle = Constants.Text.others
         switch media.type {
         case .movie:

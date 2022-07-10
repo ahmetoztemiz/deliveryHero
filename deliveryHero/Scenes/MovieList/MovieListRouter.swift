@@ -17,11 +17,16 @@ final class MovieListRouter: MovieListRouterProtocol {
     }
     
     //MARK: - FUNCTIONS
-    func navigate(to route: MovieListRoute) {
+    func navigate(to route: MovieListRoute, mediaData: MediaModel?, actorData: PersonModel?) {
         switch route {
-        case .detail:
-            let detailVC = MovieListBuilder.make()
+        case .movieDetail:
+            guard let detailData = mediaData else { return }
+            let detailVC = MovieDetailBuilder.make(data: detailData)
             view.show(detailVC, sender: nil)
+        case .personDetail:
+            guard let detailData = actorData else { return }
+            //let detailVC = MovieDetailBuilder.make(data: detailData)
+            //view.show(detailVC, sender: nil)
         }
     }
 }
