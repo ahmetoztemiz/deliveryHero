@@ -21,18 +21,58 @@ class BaseViewController: UIViewController {
         return indicator
     }()
     
+    lazy var emptyStateImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = .emptyIcon
+
+        return imageView
+    }()
+    
+    lazy var emptyStatleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.textColor
+        label.minimumScaleFactor = 0.4
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 13, weight: .bold)
+        label.numberOfLines = 3
+        label.text = Constants.Text.noResultError
+        
+        return label
+    }()
+    
+    lazy var emptyStateContainerView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.alignment = .center
+        stackView.spacing = 2
+        stackView.addArrangedSubview(emptyStateImageView)
+        stackView.addArrangedSubview(emptyStatleLabel)
+        stackView.isHidden = true
+        
+        return stackView
+    }()
+    
     //MARK: - PROPERTIES
     
     
     //MARK: - FUNCTIONS
     override func viewDidLoad() {
         super.viewDidLoad()
-        setLoadingIndicator()
+        setConstraints()
         hideKeyboardWhenTappedAround()
     }
-
-    private func setLoadingIndicator() {
+    
+    private func setConstraints() {
         view.addSubview(indicator)
+        
+        view.insertSubview(emptyStateContainerView, belowSubview: indicator)
+        emptyStateContainerView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(view.bounds.width)
+            make.height.equalTo(300)
+        }
     }
     
     func configureNavigationBar(title: String) {
@@ -51,6 +91,10 @@ class BaseViewController: UIViewController {
         }
         
         self.view.isUserInteractionEnabled = !isLoading
+    }
+    
+    func showEmptyState(_ isEmpty: Bool) {
+        emptyStateContainerView.isHidden = !isEmpty
     }
     
     func setAlertView(title: String,

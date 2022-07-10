@@ -32,4 +32,8 @@ extension UIImage {
     static var waitIcon: UIImage {
         return UIImage(named: "waitIcon") ?? UIImage()
     }
+    
+    static var emptyIcon: UIImage {
+        return UIImage(named: "emptyIcon") ?? UIImage()
+    }
 }

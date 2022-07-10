@@ -63,7 +63,7 @@ final class MovieListViewController: BaseViewController {
     }
     
     private func setViewConstraints() {
-        view.insertSubview(movieCollectionView, belowSubview: indicator)
+        view.insertSubview(movieCollectionView, belowSubview: emptyStateContainerView)
         movieCollectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -82,6 +82,7 @@ extension MovieListViewController: MovieListViewProtocol {
             mediaList = data
             DispatchQueue.main.async {
                 self.movieCollectionView.reloadData()
+                self.showEmptyState(self.mediaList.isEmpty)
             }
         case .showAlert(let title, let message):
             setAlertView(title: title,
