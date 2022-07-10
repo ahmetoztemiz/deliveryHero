@@ -12,7 +12,8 @@ struct Constants {
     struct Text {
         static let movieList = "Movie List"
         static let movies = "Movies"
-        static let detail = "Detail"
+        static let movieDetail = "Movie Detail"
+        static let actorDetail = "Actor Detail"
         static let actors = "Actors"
         static let tv = "TV Shows"
         static let others = "Others"

@@ -145,7 +145,7 @@ final class MovieDetailViewController: BaseViewController {
     private func setMovieData() {
         setImageView()
         setInfoText()
-        configureNavigationBar(title: Constants.Text.detail)
+        configureNavigationBar(title: Constants.Text.movieDetail)
     }
     
     private func setCastData() {

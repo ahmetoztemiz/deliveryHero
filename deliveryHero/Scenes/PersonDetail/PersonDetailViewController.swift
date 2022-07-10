@@ -130,7 +130,7 @@ final class PersonDetailViewController: BaseViewController {
     private func setPersonData() {
         setImageView()
         setInfoText()
-        configureNavigationBar(title: Constants.Text.detail)
+        configureNavigationBar(title: Constants.Text.actorDetail)
     }
     
     private func setCastData() {
